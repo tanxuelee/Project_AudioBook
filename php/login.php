@@ -42,6 +42,20 @@ echo '
             padding: 40px;
             background: #f4f7f8;
         }
+        
+        .container1 {
+            display: flex;
+            align-items: center;
+        }
+        
+        .text {
+            padding: 30px;
+        }
+        
+        .copyright {
+            font-size: 15px;
+            text-align: center;
+        }
     </style>
     <script>
         function password() {
@@ -59,17 +73,17 @@ echo '
         <form action="" id="form" method="post" class="rounded-3">
             <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
-                    <img src="../images/others/audiobook.png" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                    <img src="../images/others/login banner.png" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-                        <div class="d-flex align-items-center mb-4 pb-1">
-                             <img src="../images/others/logo.png" height="150">
+                        <div class="container1">
+                            <img class="float-left" src="../images/others/logo.png" style = "width: 120; height: auto;">
+                            <div class="text">
+                                <h4><strong>Welcome to Polygon AudioBook!</strong></h4>
+                            </div>
                         </div>
-                        
-                        <h3>Welcome to Polygon AudioBook</h3>
-                        <br>
-                        
+                        <hr><br>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="email">Email:*</label>
                             <div class="col-10">
@@ -89,11 +103,12 @@ echo '
 
                         <br>
                         <div class="d-grid">
-                            <button class="btn btn-secondary btn-lg" name="submit" type="submit">Login</button>
+                            <button class="btn btn-secondary btn-lg" name="login" type="submit">Login</button>
                         </div>
                         
                         <?php
-                            if (isset($_POST['submit'])) {
+                            session_start();
+                            if (isset($_POST['login'])) {
                                 $user_email = $_POST['user_email'];
                                 $user_password = sha1($_POST['user_password']);
                                 $sqllogin = "SELECT * FROM tbl_users WHERE user_email = '$user_email' AND user_password = '$user_password'";
@@ -101,15 +116,23 @@ echo '
                                 
                                 if ($result->num_rows > 0) {
                                     $row = mysqli_fetch_assoc($result);
-                                    echo "<script>alert('Login Successful!');</script>";
+                                    $_SESSION['user_id'] = $row['user_id'];
+                                    echo "<script>alert('Login Successful!');
+                                    location.replace('profile.php');</script>";
                                 } else {
-                                    echo "<script>alert('Incorrect Email or Password')</script>";
+                                    echo "<script>alert('Incorrect Email or Password');</script>";
                                 }
                             }
                         ?>
 
                         <br>
                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="register.php" style="color: #393f81;"><b>Register here</b></a></p>
+                        
+                        <hr>
+                        <div class="copyright">
+                            <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
+                        </div>
+                        <hr>
                     </div>
                 </div>
             </div>
