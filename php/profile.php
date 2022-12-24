@@ -87,7 +87,6 @@ $user_id = $_SESSION['user_id'];
         </div>
     </nav>
     
-    <form action="login.php" enctype="multipart/form-data" id="form" method="post">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-3">
@@ -148,9 +147,11 @@ $user_id = $_SESSION['user_id'];
                             </div>
                         </div>
                     </div>
-                    <div class="d-grid gap-2 col-12 mx-auto">
-                        <button type="submit" class="btn btn-secondary btn-lg btn-block">Logout</button>
-                    </div>
+                    <form action="login.php" enctype="multipart/form-data" id="form" method="post">
+                        <div class="d-grid gap-2 col-12 mx-auto">
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block">Logout</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <hr>
@@ -159,6 +160,5 @@ $user_id = $_SESSION['user_id'];
             </div>
             <hr>
         </div>
-    </form>
 </body>
 </html>
