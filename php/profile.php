@@ -90,83 +90,77 @@ $user_id = $_SESSION['user_id'];
             </div>
         </div>
     </nav>
-    
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-3">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <?php
+                            $sqlread = "SELECT * FROM tbl_users WHERE user_id = '$user_id'";
+                            $result = $conn->query($sqlread);
+                            if ($result->num_rows > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                            }
+                        ?>
+                            
+                        <?php echo "<img src='data:image/jpeg;base64," . base64_encode($row["user_pic"]) . "' alt='user pic' class='rounded-circle img-fluid' style='width: 113px;'>"; ?>
+                            
+                        <h5 class="my-3"><?php echo $row['user_name']; ?></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <form action="edit.php" enctype="multipart/form-data" id="form" method="post">
                     <div class="card mb-4">
-                        <div class="card-body text-center">
-                            <?php
-                                $sqlread = "SELECT * FROM tbl_users WHERE user_id = '$user_id'";
-                                $result = $conn->query($sqlread);
-                                if ($result->num_rows > 0) {
-                                    $row = mysqli_fetch_assoc($result);
-                                }
-                            ?>
-                            
-                            <?php echo "<img src='data:image/jpeg;base64," . base64_encode($row["user_pic"]) . "' alt='user pic' class='rounded-circle img-fluid' style='width: 130px;'>"; ?>
-                            
-                            <h5 class="my-3"><?php echo $row['user_name']; ?></h5>
-                            <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-outline-secondary ms-1">Change Profile Picture</button>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-muted mb-0"><?php echo $row["user_name"]; ?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <?php echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='editName' value='" . $row["user_id"] . "'>Change Name</button>"; ?>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email Address</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-muted mb-0"><?php echo $row['user_email']; ?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <?php echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='editEmail' value='" . $row["user_id"] . "'>Change Email</button>"; ?>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Contact Number</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-muted mb-0"><?php echo $row['user_phone']; ?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <?php echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='editPhone' value='" . $row["user_id"] . "'>Change Phone</button>"; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-9">
-                    <form action="edit.php" enctype="multipart/form-data" id="form" method="post">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Full Name</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0"><?php echo $row["user_name"]; ?></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <?php echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='editName' value='" . $row["user_id"] . "'>Change Name</button>"; ?>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Email Address</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0"><?php echo $row['user_email']; ?></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <?php echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='editEmail' value='" . $row["user_id"] . "'>Change Email</button>"; ?>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Contact Number</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0"><?php echo $row['user_phone']; ?></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <?php echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='editPhone' value='" . $row["user_id"] . "'>Change Phone</button>"; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <form action="login.php" enctype="multipart/form-data" id="form" method="post">
-                        <div class="d-grid gap-2 col-12 mx-auto">
-                            <button type="submit" class="btn btn-secondary btn-lg btn-block">Logout</button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
-            <hr>
-            <div class="copyright">
-                <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
-            </div>
-            <hr>
         </div>
+        <form action="login.php" enctype="multipart/form-data" id="form" method="post">
+            <div class="d-grid gap-2 col-12 mx-auto">
+                <button type="submit" class="btn btn-secondary btn-lg btn-block">Logout</button>
+            </div>
+        </form>
+        <div class="copyright">
+            <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
+        </div>
+    </div>
 </body>
 </html>

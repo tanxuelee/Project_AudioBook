@@ -94,12 +94,9 @@ $user_id = $_SESSION['user_id'];
                                     }
                                 ?>
                                 
-                                <?php echo "<img src='data:image/jpeg;base64," . base64_encode($row["user_pic"]) . "' alt='user pic' class='rounded-circle img-fluid' style='width: 130px;'>"; ?>
+                                <?php echo "<img src='data:image/jpeg;base64," . base64_encode($row["user_pic"]) . "' alt='user pic' class='rounded-circle img-fluid' style='width: 113px;'>"; ?>
                                 
                                 <h5 class="my-3"><?php echo $row['user_name']; ?></h5>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-outline-secondary ms-1" disabled>Change Profile Picture</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -240,16 +237,15 @@ $user_id = $_SESSION['user_id'];
                                 ?>
                             </div>
                         </div>
-                        <div class="d-grid gap-2 col-12 mx-auto">
-                            <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Logout</button>
-                        </div>
                     </div>
                 </div>
+                <div class="d-grid gap-2 col-12 mx-auto">
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Logout</button>
+                </div>
+                <br>
+                <div class="copyright">
+                    <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
+                </div>
             </div>
-            <hr>
-            <div class="copyright">
-                <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
-            </div>
-        <hr>
     </body>
 </html>
