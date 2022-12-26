@@ -72,9 +72,9 @@ echo '
             }
         }
         
-        //function preview() {
-        //        frame.src = URL.createObjectURL(event.target.files[0]);
-        //}
+        function preview() {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+        }
         
         function password() {
             var x = document.getElementById("user_password");
@@ -97,7 +97,7 @@ echo '
 </head>
 <body>
 <div class="d-flex justify-content-center">
-        <form action="" id="form" method="post" class="rounded-3">
+        <form action="" id="form" method="post" class="rounded-3" enctype="multipart/form-data">
             <div class="container1">
                 <div class="text">
                     <h1><strong>Registration Form</strong></h1>
@@ -105,14 +105,14 @@ echo '
                 <img class="float-right" src="../images/others/logo.png" style = "width: 100; height: auto;">
             </div>
             <hr><br>
-            <!--<div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="profile_pic">Profile Picture:*</label>
-                <div class="col-10">
-                    <input class="form-control" type="file" name="profile_pic" accept="image/*" onchange="preview()" required>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="user_pic">Profile Picture:*</label>
+                <div class="col-8">
+                    <input class="form-control" type="file" name="user_pic" id="user_pic" accept="image/png, image/jpeg, image/jpg" onchange="preview()" required>
                     <br><img src="https://via.placeholder.com/200x200?text=No+Picture" id="frame" class="img-thumbnail" width="200" height="200">
                 </div>
             </div>
-            <br>-->
+            <br>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="name">Full Name (XXX XXX XXX):*</label>
                 <div class="col-8">
@@ -164,18 +164,16 @@ echo '
                 $user_email = $_POST['user_email'];
                 $user_password = sha1($_POST['user_password']);
                 $user_phone = $_POST['user_phone'];
-                //$base64image = $_POST['profile_pic'];
+                $base64image = $_POST['profile_pic'];
+                $user_pic = $_FILES['user_pic']['tmp_name']; 
+                $imgContent = addslashes(file_get_contents($user_pic));
                 
                 $select = mysqli_query ($conn, "SELECT user_email FROM tbl_users WHERE user_email = '$user_email'");
                 if (mysqli_num_rows($select) > 0) {
                     echo "<script>alert('Registration Fail! Email already exist!');</script>";
                 } else {
-                    $sqlinsert = mysqli_query ($conn, "INSERT INTO tbl_users (user_name,user_email,user_password,user_phone) VALUES ('" . $user_name . "', '" . $user_email . "', '" . $user_password . "' , '" . $user_phone . "')");
-                    if ($sqlinsert) {
-                        // $filename = mysqli_insert_id($conn);
-                        // $decoded_string = base64_decode($base64image);
-                        // $path = '../images/users/' . $filename . '.jpg';
-                        // $is_written = file_put_contents($path, $decoded_string);
+                    $sqlinsert = "INSERT INTO tbl_users (user_name,user_email,user_password,user_phone,user_pic) VALUES ('" . $user_name . "', '" . $user_email . "', '" . $user_password . "' , '" . $user_phone . "' , '" . $imgContent . "')";
+                    if ($conn->query($sqlinsert) === TRUE) {
                         echo "<script>alert('Registration Successful!');
                         location.replace('login.php');</script>";
                     } else {

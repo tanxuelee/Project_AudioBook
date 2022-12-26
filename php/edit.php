@@ -86,7 +86,6 @@ $user_id = $_SESSION['user_id'];
                     <div class="col-lg-3">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="" alt="user pic" class="rounded-circle img-fluid" style="width: 130px;">
                                 <?php
                                     $sqlread = "SELECT * FROM tbl_users WHERE user_id = '$user_id'";
                                     $result = $conn->query($sqlread);
@@ -94,6 +93,9 @@ $user_id = $_SESSION['user_id'];
                                         $row = mysqli_fetch_assoc($result);
                                     }
                                 ?>
+                                
+                                <?php echo "<img src='data:image/jpeg;base64," . base64_encode($row["user_pic"]) . "' alt='user pic' class='rounded-circle img-fluid' style='width: 130px;'>"; ?>
+                                
                                 <h5 class="my-3"><?php echo $row['user_name']; ?></h5>
                                 <div class="d-flex justify-content-center mb-2">
                                     <button type="button" class="btn btn-outline-secondary ms-1" disabled>Change Profile Picture</button>
