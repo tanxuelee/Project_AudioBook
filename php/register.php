@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "moneymon_audiobook_user";
-$password = "V-uWX%rR8Ljg";
-$dbname = "moneymon_audiobook_db";
+include_once("dbconnect.php");
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){
@@ -56,6 +53,7 @@ echo '
             font-size: 15px;
             text-align: center;
         }
+
     </style>
     <script>
         var check = function() {
@@ -187,12 +185,9 @@ echo '
             <div class="text-center">
                 <p class="mb-5 pb-lg-2" style="color: #393f81;">Already have an account? <a href="login.php" style="color: #393f81;"><b>Login now</b></a></p>
             </div>
-            
-            <hr>
                 <div class="copyright">
                     <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
                 </div>
-            <hr>
         </form>
     </div>
 </body>

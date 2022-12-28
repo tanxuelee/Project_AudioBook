@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "moneymon_audiobook_user";
-$password = "V-uWX%rR8Ljg";
-$dbname = "moneymon_audiobook_db";
+include_once("dbconnect.php");
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){

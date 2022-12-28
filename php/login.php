@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "moneymon_audiobook_user";
-$password = "V-uWX%rR8Ljg";
-$dbname = "moneymon_audiobook_db";
+include_once("dbconnect.php");
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){
@@ -118,7 +115,7 @@ echo '
                                     $row = mysqli_fetch_assoc($result);
                                     $_SESSION['user_id'] = $row['user_id'];
                                     echo "<script>alert('Login Successful!');
-                                    location.replace('profile.php');</script>";
+                                    location.replace('home.php');</script>";
                                 } else {
                                     echo "<script>alert('Incorrect Email or Password');</script>";
                                 }
@@ -127,12 +124,10 @@ echo '
 
                         <br>
                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="register.php" style="color: #393f81;"><b>Register here</b></a></p>
-                        
-                        <hr>
                         <div class="copyright">
                             <p>Copyright &copy reserved by <strong>Polygon AudioBook</strong></p>
                         </div>
-                        <hr>
+
                     </div>
                 </div>
             </div>

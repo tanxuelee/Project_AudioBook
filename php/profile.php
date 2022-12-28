@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "moneymon_audiobook_user";
-$password = "V-uWX%rR8Ljg";
-$dbname = "moneymon_audiobook_db";
+include_once("dbconnect.php");
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){
@@ -63,11 +60,11 @@ $user_id = $_SESSION['user_id'];
     <img src="../images/others/bannerTop.png" class="img-fluid" alt="Responsive image">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand">
+            <a href="home.php" class="navbar-brand">
                 <img src="../images/others/logo2.png" height="50">
             </a>
             <div class="container-fluid">
-                <span class="navbar-brand h2"><strong>Welcome to Polygon AudioBook Website</strong></span>
+                <span class="navbar-brand h2"><strong>My Profile</strong></span>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -79,8 +76,8 @@ $user_id = $_SESSION['user_id'];
                             <strong>Menu</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><strong>Home</strong></a></li>
-                            <li><a class="dropdown-item" href="#"><strong>Favourite</strong></a></li>
+                            <li><a class="dropdown-item" href="home.php"><strong>Home</strong></a></li>
+                            <li><a class="dropdown-item" href="favourite.php"><strong>Favourite</strong></a></li>
                             <li><a class="dropdown-item active bg-dark" aria-current="true" href="profile.php" style="color: white"><strong>Profile</strong></a></li>
                             <div class="dropdown-divider"></div>
                             <li><a class="dropdown-item" href="login.php"><strong>Logout</strong></a></li>
