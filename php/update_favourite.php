@@ -19,13 +19,13 @@ if ($_GET['submit'] == "add") {
 				$favouriteqty = $favourite['favourite_qty'];
 			}
 			$favouriteqty = $favouriteqty + 1;
-			$updatefavourite = "UPDATE `tbl_favourite` SET `favourite_qty`= '$favouriteqty' WHERE user_id = '$user_id' AND book_id = '$book_id'";
+			$updatefavourite = "UPDATE tbl_favourite SET favourite_qty= '$favouriteqty' WHERE user_id = '$user_id' AND book_id = '$book_id'";
 			$conn -> exec($updatefavourite);
             
 			alert("You had added into your favourite.");
 
 		} else {
-			$addfavourite = "INSERT INTO `tbl_favourite`(`user_id`, `book_id`) VALUES ('$user_id','$book_id')";
+			$addfavourite = "INSERT INTO tbl_favourite(user_id, book_id) VALUES ('$user_id','$book_id')";
 			try {
 				$conn -> exec($addfavourite);
 

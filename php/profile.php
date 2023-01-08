@@ -1,5 +1,8 @@
 <?php
-include_once("dbconnect.php");
+$servername = "localhost";
+$username = "moneymon_audiobook_user";
+$password = "V-uWX%rR8Ljg";
+$dbname = "moneymon_audiobook_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){
@@ -12,15 +15,13 @@ echo '
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
   </script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   ';
-
+  
 session_start();
 $user_id = $_SESSION['user_id'];
-
 ?>
 
 <!DOCTYPE html>

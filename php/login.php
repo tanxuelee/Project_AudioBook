@@ -17,6 +17,7 @@ echo '
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   ';
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +105,7 @@ echo '
                         </div>
                         
                         <?php
-                            session_start();
+                            
                             if (isset($_POST['login'])) {
                                 $user_email = $_POST['user_email'];
                                 $user_password = sha1($_POST['user_password']);
